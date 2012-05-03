@@ -1,0 +1,299 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    font-size: 62.5%; /* 1em = 10px */
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* INIT */
+html, body { margin: 10px; }
+
+/* HEADER */
+h1 {
+    margin: 20px 0;
+
+    font-size: 5em; text-align: center;
+}
+
+/* RSSTAB */
+.rsstab {
+    border: 1px solid #555; height: auto; margin: 0 auto; padding: 39px 0 0 0; overflow: hidden; position: relative; width: 80%;
+
+    -webkit-box-shadow: 2px 2px 3px 0 #000;
+    -moz-box-shadow: 2px 2px 3px 0 #000;
+    box-shadow: 2px 2px 3px 0 #000;
+
+    background-image: -webkit-linear-gradient(#ccc, #fff);
+    background-image: -moz-linear-gradient(#ccc, #fff);
+    background-image: -o-linear-gradient(#ccc, #fff);
+    background-image: -ms-linear-gradient(#ccc, #fff);
+    background-image: linear-gradient(#ccc, #fff);
+}
+.rsstab.closed { height: 0; }
+
+/* RSSTAB HEADER */
+
+/* EDITOR / NAVIGATOR */
+.rsstab .loader {
+    display: none; position: absolute; padding: 10px; right: 35px; top: 0;
+
+    color: #555; font-size: 2em;
+
+    -webkit-animation: loading 2s infinite linear;
+    -moz-animation: loading 2s infinite linear;
+    -ms-animation: loading 2s infinite linear;
+    -o-animation: loading 2s infinite linear;
+    animation: loading 2s infinite linear;
+}
+
+.rsstab .save {
+    background: #555; display: block; padding: 10px; position: absolute; top: 0; left: 0; visibility: visible;
+
+    color: #fff; font-size: 2em; text-decoration: none;
+
+    -webkit-transition: background .5s, text-shadow .5s;
+    -moz-transition: background .5s, text-shadow .5s;
+    -o-transition: background .5s, text-shadow .5s;
+    -ms-transition: background .5s, text-shadow .5s;
+    transition: background .5s, text-shadow .5s;
+}
+.rsstab .save:hover {
+    background: #000;
+
+    text-shadow: 0 0 5px #fff;
+}
+
+.rsstab .add {
+    background: #555; display: block; padding: 10px; position: absolute; top: 0; right: 0; visibility: visible;
+
+    color: #fff; font-size: 2em; text-decoration: none;
+
+    -webkit-transition: background .5s, text-shadow .5s;
+    -moz-transition: background .5s, text-shadow .5s;
+    -o-transition: background .5s, text-shadow .5s;
+    -ms-transition: background .5s, text-shadow .5s;
+    transition: background .5s, text-shadow .5s;
+}
+.rsstab .add:hover {
+    background: #000;
+
+    text-shadow: 0 0 5px #fff;
+}
+
+.rsstab .editor {
+    border: 0; height: 29px; left: 35px; margin: 0; padding: 5px; outline: 0; position: absolute; top: 0; width: 100%;
+
+    font-size: 2em;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+}
+.rsstab .editor.error { background: #F55656; }
+
+/* TABS */
+.rsstab header { border-bottom: 4px solid #555; border-top: 1px solid #555; padding: 10px; }
+    .rsstab header h3 { display: inline-block; }
+        .rsstab header h3 a {
+            display: block; visibility: hidden;
+
+            -webkit-transition: visibility .5s, background .5s;
+            -moz-transition: visibility .5s, background .5s;
+            -o-transition: visibility .5s, background .5s;
+            -ms-transition: visibility .5s, background .5s;
+            transition: visibility .5s, background .5s;
+        }
+        .rsstab header h3.show a {
+            background: #555; padding: 5px; visibility: visible;
+
+            color: #fff; font-size: 2em; text-decoration: none;
+        }
+
+        .rsstab header h3 a {
+            border: 2px solid #555; margin: 0 5px 5px 0;
+
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -o-transition: all .5s;
+            -ms-transition: all .5s;
+            transition: all .5s;
+        }
+        .rsstab header h3 a:hover, .rsstab header h3.active a { border: 2px solid #FAEB93; }
+            .rsstab header h3 a span {
+                background: #FAEB93; display: inline-block; margin-left: 5px; padding: 5px;
+
+                color: #555;
+
+                -webkit-transition: all .5s;
+                -moz-transition: all .5s;
+                -o-transition: all .5s;
+                -ms-transition: all .5s;
+                transition: all .5s;
+            }
+            .rsstab header h3 a span:hover { background: #fff; }
+
+
+/* RSSTAB CONTENT */
+.rsstab .content {
+    display: block; height: 0; overflow: hidden; visibility: hidden;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+}
+.rsstab .content.active { background: #555; border-top: 2px solid #FAEB93; display: block; height: auto; padding: 10px; visibility: visible; }
+
+    .rsstab .content h2 {
+        background: #F55656; padding: 10px;
+
+        color: #eee; font-size: 2em;
+    }
+
+    .rsstab .content ul li {
+        display: block; margin: 10px 0;
+
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+        -ms-transition: all .5s;
+        transition: all .5s;
+    }
+    .rsstab .content ul li:hover { margin-left: 5%; }
+        .rsstab .content ul li a {
+            background: #FAEB93; display: block; padding: 10px;
+
+            color: #555; font-size: 2em; text-decoration: none; text-shadow: 1px 1px 0 #fff;
+        }
+
+            .rsstab .content ul li section {
+                background:#fff; height: 5px; margin-left: 2%; padding: 5px; overflow: hidden;
+
+                color: #fff; cursor: pointer; font-size: 1.5em;
+
+                -webkit-transition: all .5s;
+                -moz-transition: all .5s;
+                -o-transition: all .5s;
+                -ms-transition: all .5s;
+                transition: all .5s;
+            }
+            .rsstab .content ul li section.active {
+                height: auto; min-height: 50px; padding: 5px;
+
+                color: #555;
+            }
+
+                .rsstab .content ul li section img { float: left; width: 100px; }
+
+/* ANIMATIONS */
+@keyframes "loading" {
+ from {
+    -webkit-transform: rotate(0deg);
+   	-moz-transform: rotate(0deg);
+   	-o-transform: rotate(0deg);
+   	-ms-transform: rotate(0deg);
+   	transform: rotate(0deg);
+ }
+ to {
+    -webkit-transform: rotate(360deg);
+   	-moz-transform: rotate(360deg);
+   	-o-transform: rotate(360deg);
+   	-ms-transform: rotate(360deg);
+   	transform: rotate(360deg);
+ }
+
+}
+
+@-moz-keyframes loading {
+ from {
+   -moz-transform: rotate(0deg);
+   transform: rotate(0deg);
+ }
+ to {
+   -moz-transform: rotate(360deg);
+   transform: rotate(360deg);
+ }
+
+}
+
+@-webkit-keyframes "loading" {
+ from {
+   -webkit-transform: rotate(0deg);
+   transform: rotate(0deg);
+ }
+ to {
+   -webkit-transform: rotate(360deg);
+   transform: rotate(360deg);
+ }
+
+}
+
+@-ms-keyframes "loading" {
+ from {
+   -ms-transform: rotate(0deg);
+   transform: rotate(0deg);
+ }
+ to {
+   -ms-transform: rotate(360deg);
+   transform: rotate(360deg);
+ }
+
+}
+
+@-o-keyframes "loading" {
+ from {
+   -o-transform: rotate(0deg);
+   transform: rotate(0deg);
+ }
+ to {
+   -o-transform: rotate(360deg);
+   transform: rotate(360deg);
+ }
+
+}
+
