@@ -71,12 +71,12 @@
                 /* Add */
                 if(typeof edit === 'undefined') {
                     /* Append tab */
-                    me._header.append(tab);
+                    me._header.append(tab[0]);
                 }
                 /* Edit */
                 else {
                     /* Replace tab */
-                    me._header.children(':eq(' + edit + ')').replaceWith(tab);
+                    me._header.children(':eq(' + edit + ')').replaceWith(tab[0]);
                 }
 
                 /* For css3 transition */
@@ -118,10 +118,10 @@
             $.ajax({
                 url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select title from rss where url = "' + me._editor.val() +'" limit ' + me.limit + '') + '&format=json',
                 success: function(root) {
-                    var items = root.query.results.item;
+                    var items = root.query.results ? root.query.results.item : root.query.results;
 
                     /* Success */
-                    if(items[0]) {
+                    if(items && items[0]) {
                         rssSuccess.call(this, $(this).data('edit'));
                         rssLoaded.call(this, true);
                     /* Failed */
@@ -223,10 +223,10 @@
         $.ajax({
             url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from rss where url = "' + url +'" limit ' + me.limit + '') + '&format=json',
             success: function(root) {
-                var items = root.query.results.item;
+                var items = root.query.results ? root.query.results.item : root.query.results;
 
                 /* Success */
-                if(items[0]) {
+                if(items && items[0]) {
                     success(items);
                     /* Cache */
                     me._content.data('items', items);
