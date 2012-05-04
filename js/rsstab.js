@@ -20,6 +20,7 @@
 
         this.editorHandler();
         this.tabHandler();
+        this.contentHandler();
         this.cookieHandler();
     };
 
@@ -167,10 +168,11 @@
                     me._content.removeData('items');
                 }
                 else {
-                    me._header.children('.active').removeClass('active');
-                    $(this).addClass('active');
-                    me._content.addClass('active');
-                    me.showItems($(this).data('url'));
+                    me.showItems($(this).data('url'), function() {
+                        me._header.children('.active').removeClass('active');
+                        $(this).addClass('active');
+                        me._content.addClass('active');
+                    }, this);
                 }
             },
             startEdit = function() {
@@ -202,7 +204,7 @@
     /**
      * Show rss items
      */
-    Rsstab.prototype.showItems = function(url) {
+    Rsstab.prototype.showItems = function(url, callback, context) {
         var me = this,
             error = function() {
                 me._content.html('<h2>Failed rss, please refresh url!</h2>');
@@ -218,6 +220,8 @@
                 data = '<ul>' + data + '</ul>';
 
                 me._content.html(data);
+
+                callback.call(context);
             };
 
         $.ajax({
@@ -242,7 +246,13 @@
             dataType: 'jsonp',
             context: this
         });
+    };
 
+    /**
+     * Content handler
+     */
+    Rsstab.prototype.contentHandler = function() {
+        var me = this;
         /* Details */
         this._content.on('click', 'li section', function(e) {
             /* Get from cache */
