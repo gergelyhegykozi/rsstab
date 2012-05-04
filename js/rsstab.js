@@ -116,9 +116,9 @@
 
             /* Validate */
             $.ajax({
-                url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select title from rss where url = "' + me._editor.val() +'" limit ' + me.limit + '') + '&format=xml',
-                success: function(xml) {
-                    var items = $(xml).find('results').children('item');
+                url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select title from rss where url = "' + me._editor.val() +'" limit ' + me.limit + '') + '&format=json',
+                success: function(root) {
+                    var items = root.query.results.item;
 
                     /* Success */
                     if(items[0]) {
@@ -138,7 +138,7 @@
                     /* Hide loader */
                     me._loader.hide();
                 },
-                dataType: 'xml',
+                dataType: 'jsonp',
                 context: this
             });
 
@@ -212,7 +212,7 @@
                     data = '';
 
                 for(; i < items.length; i++) {
-                    data += '<li><a href="' + $(items[i]).children('link').text() + '" target="_blank">' + $(items[i]).children('title').text() + '</a><section></section></li>';
+                    data += '<li><a href="' + $('<div />').html(items[i].link).text() + '" target="_blank">' + $('<div />').html(items[i].title).text() + '</a><section></section></li>';
                 }
 
                 data = '<ul>' + data + '</ul>';
@@ -221,9 +221,9 @@
             };
 
         $.ajax({
-            url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from rss where url = "' + url +'" limit ' + me.limit + '') + '&format=xml',
-            success: function(xml) {
-                var items = $(xml).find('results').children('item');
+            url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from rss where url = "' + url +'" limit ' + me.limit + '') + '&format=json',
+            success: function(root) {
+                var items = root.query.results.item;
 
                 /* Success */
                 if(items[0]) {
@@ -239,7 +239,7 @@
             error: function() {
                 error();
             },
-            dataType: 'xml',
+            dataType: 'jsonp',
             context: this
         });
 
@@ -247,10 +247,9 @@
         this._content.on('click', 'li section', function(e) {
             /* Get from cache */
             var item = me._content.data('items')[$(this).parent().index()],
-                raw = $(item).children('description').text(),
-                helper = $('<div></div>').html(raw),
+                raw = $('<div />').html(item.description).text(),
                 imgPattern = /img.*?src="(http:\/\/.*?)"/im,
-                content = helper.text();
+                content = $('<div />').html(raw).text();
 
             imgResult = imgPattern.exec(raw);
             if(imgResult && imgResult[2]) content = '<img src="' + imgResult[2] + '" />' + content;
