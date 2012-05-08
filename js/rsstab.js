@@ -147,7 +147,7 @@
 
         /* Load data from cookie */
         cookieUrls = me.cookie.Get(me._elem.attr('id'));
-        if(cookieUrls !== null) {
+        if(cookieUrls !== null && cookieUrls !== '') {
             cookieUrls = cookieUrls.split(',');
             for(; i < cookieUrls.length; i++) {
                 rssSuccess(undefined, cookieUrls[i]);
